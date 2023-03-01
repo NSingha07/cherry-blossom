@@ -20,7 +20,35 @@ Variables
 "solarradiation": Avg. solarradiation from december to february
 "daytime": Avg. daytime (in sec) from december to february
 
-The prediction of peak bloom is an interesting research project that requires the use of historical data to develop models that can accurately forecast the blooming date for future years. I used data from 1981 to 2022 and identified year, month, temperature, humidity, and windspeed as independent variables for predicting the bloom day. However, since data for the blooming month is not available for future years, I employed a glm regression model with a binomial family to predict the month first. I employed location, year, temperature, daytime, moon phase, dew, and humidity as independent variables. The model achieved 77% accuracy in predicting the month on the test dataset.
-Having predicted the month for future years, I fit a multiple linear regression model to predict the peak bloom date using year, month, temperature, humidity, and windspeed as independent variables. The temperature variable was transformed to achieve normality, and the model was evaluated using various statistical measures. The results indicated that the model explained 64% variability on the training dataset, and the standard error was low at 4.556. The regression model was significant at the 95% level of significance, with a p-value of less than 0.05.
-The models developed in this project can be used to predict the peak bloom date for future years from 2023 to 2032. These predictions are essential for farmers and growers who rely on the blooming of flowers to plan their activities. 
-Furthermore, the models can be extended to other regions and flowers to aid in their cultivation and management. The project's success demonstrates the value of historical data in developing predictive models and the importance of employing different statistical techniques to achieve accurate predictions. Overall, the project provides a useful framework for predicting the peak bloom date, which can be applied to various fields, including agriculture, horticulture, and climate science.
+
+Predicting the peak boom is an interesting project. To achieve this, I use historic data from 1981 to 2022. 
+I choose.
+“Year”: Blooming year
+“Month”: Blooming month
+“temp”: Avg. temperature for DEC to FEB
+“humidity”: Avg. humidity for DEC to FEB
+“windspeed”: Avg. windspeed for DEC to FEB
+As independent variables to predict the “Bloom day”. 
+Now my challenge is, data for the blooming month is not available for future years. So, I fit a glm regression model with a “binomial family” to predict the “month” first.
+
+I use,
+“Location”: Location
+“Year”: Blooming year
+“Temp”: Avg. temperature for DEC to FEB
+“Daytime”: Avg. Daytime for DEC to FEB
+“Moonphase”: Avg. Moonphase for DEC to FEB
+“Dew”: Avg. Dew for DEC to FEB
+“humidity”: Avg. humidity for DEC to FEB
+as independent variables to predict the Blooming Month.
+My model is 77% accurate while predicting the month on the test dataset.
+Now that I have the Month for our future years. I go ahead and fit a Multiple linear regression model. 
+bloom_doy = year + as.factor(month) + exp(temp) + humidity + windspeed
+
+I transform “temp” to “exp(temp)” to achieve normality.
+Residual standard error: 4.556 on 118 degrees of freedom
+Multiple R-squared:  0.6626,	Adjusted R-squared:  0.6455 
+F-statistic: 38.63 on 6 and 118 DF, p-value: < 2.2e-16
+
+Now my model is explaining 64% variability on the training dataset. With a low standard error of 4.556.
+And the p-value is less than 0.05. So, the regression model is significant at the 95% level of significance.
+With the help of these two models, I predicted the pick bloom date from 2023 to 2032.
